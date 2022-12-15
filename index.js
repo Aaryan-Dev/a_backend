@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send(
-    "This is Api for Shopping List App -> /addlist, getlist/, delete/, bookmark/"
+    "This is Api for Shopping List App -> /addlist, getlist/, delete/, bookmark/, getbookmark"
   );
 });
 
@@ -68,6 +68,12 @@ app.post("/bookmark", async (req, res) => {
     // console.log(err);
     res.send(err);
   }
+});
+
+app.get("/getbookmark", async (req, res) => {
+  const mark_data = await markModle.find({});
+
+  res.send({ mark_data });
 });
 
 app.listen(port, async () => {
