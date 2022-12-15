@@ -15,7 +15,9 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("This is Api for Shopping List App");
+  res.send(
+    "This is Api for Shopping List App -> /addlist, getlist/, delete/, bookmark/"
+  );
 });
 
 app.post("/addlist", async (req, res) => {
@@ -40,6 +42,14 @@ app.get("/getlist", async (req, res) => {
   const bmi_data = await BmiModle.find({});
 
   res.send({ bmi_data });
+});
+
+app.post("/delete", async (req, res) => {
+  const { id } = req.body;
+  console.log(id);
+  await BmiModle.deleteOne({ _id: id });
+
+  res.send({ msg: "Book deleted successfully" });
 });
 
 app.listen(port, async () => {
