@@ -1,16 +1,21 @@
 const mongoose = require("mongoose");
 
+// - Title of Item.
+// - Quantity.
+// - Priority.
+// - Date and timestamp
+// - Description.
+
 const bmiSchema = mongoose.Schema(
   {
-    userId: String,
-    loan: { type: Number, required: true },
-    intrest: { type: Number, required: true },
-    months: { type: Number, required: true },
-    emi: { type: Number, required: true },
+    title: { type: String, required: true },
+    quantity: { type: String, required: true },
+    priority: { type: String, required: true },
+    description: { type: String, required: true },
   },
   { timestamps: true }
 );
 
-const BmiModle = mongoose.model("bmi", bmiSchema);
+const BmiModle = mongoose.model("note", bmiSchema);
 
 module.exports = { BmiModle };
