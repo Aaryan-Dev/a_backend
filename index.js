@@ -2,6 +2,7 @@ const express = require("express");
 
 // const { UserModle } = require("./Modle/User.modle");
 const { BmiModle } = require("./Modle/Emi.modle");
+const { markModle } = require("./Modle/bookmark.modle");
 const { connection } = require("./db");
 require("dotenv").config();
 // const bcrypt = require("bcrypt");
@@ -50,6 +51,23 @@ app.post("/delete", async (req, res) => {
   await BmiModle.deleteOne({ _id: id });
 
   res.send({ msg: "Book deleted successfully" });
+});
+
+app.post("/bookmark", async (req, res) => {
+  const { id } = req.body;
+  try {
+    const bookmark = await BmiModle.findOne({ _id: id });
+
+    console.log(bookmark);
+    const data = new markModle(bookmark);
+
+    await markModle.insertMany([data]);
+
+    res.send({ msg: "Bookmarked successfully" });
+  } catch (err) {
+    // console.log(err);
+    res.send(err);
+  }
 });
 
 app.listen(port, async () => {
