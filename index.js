@@ -71,9 +71,12 @@ app.post("/bookmark", async (req, res) => {
 });
 
 app.get("/getbookmark", async (req, res) => {
-  const mark_data = await markModle.find({});
-
-  res.send({ mark_data });
+  try {
+    const mark_data = await markModle.find({});
+    res.send({ mark_data });
+  } catch (err) {
+    res.send(err);
+  }
 });
 
 app.listen(port, async () => {
