@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("MASAI WORD GAME");
+  res.send("MASAI WORD GAME, /adduser, /plazone, getuser");
 });
 
 app.post("/adduser", async (req, res) => {
